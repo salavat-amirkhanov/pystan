@@ -611,8 +611,6 @@ def _get_valid_stan_args(base_args=None):
             raise ValueError(msg)
         refresh = args['ctrl']['optim']['iter'] // 100
         args['ctrl']['optim']['refresh'] = args.get('refresh', refresh)
-        if args['ctrl']['optim']['refresh'] < 1:
-            args['ctrl']['optim']['refresh'] = 1
         args['ctrl']['optim']['init_alpha'] = args.get("init_alpha", 0.001)
         args['ctrl']['optim']['tol_obj'] = args.get("tol_obj", 1e-12)
         args['ctrl']['optim']['tol_grad'] = args.get("tol_grad", 1e-8)
