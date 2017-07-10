@@ -38,6 +38,7 @@ import pystan.api
 import pystan.misc
 
 logger = logging.getLogger('pystan')
+remove_compiled_lib_dir = True
 
 
 def load_module(module_name, module_path):
@@ -320,7 +321,8 @@ class StanModel:
         # but we do need a copy of the file for pickling and the module name
         with io.open(os.path.join(lib_dir, self.module_filename), 'rb') as f:
             self.module_bytes = f.read()
-        shutil.rmtree(lib_dir, ignore_errors=True)
+        if remove_compiled_lib_dir:
+            shutil.rmtree(lib_dir, ignore_errors=True)
         self.fit_class = getattr(self.module, "StanFit4Model")
 
     def __str__(self):
