@@ -38,7 +38,7 @@ import pystan.api
 import pystan.misc
 
 logger = logging.getLogger('pystan')
-remove_compiled_lib_dir = True
+remove_compiled_lib_dir = False
 
 
 def load_module(module_name, module_path):
