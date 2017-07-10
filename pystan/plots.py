@@ -14,6 +14,6 @@ def traceplot(fit, pars, dtypes, **kwargs):
     try:
         from pystan.external.pymc import plots
     except ImportError:
-        logger.critical("matplotlib required for plotting.")
+        logger.error("matplotlib required for plotting.")
         raise
     return plots.traceplot(fit.extract(dtypes=dtypes), pars, **kwargs)

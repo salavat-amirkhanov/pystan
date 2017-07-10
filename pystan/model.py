@@ -229,12 +229,12 @@ class StanModel:
         self.model_cppcode = stanc_ret['cppcode']
 
         msg = "COMPILING THE C++ CODE FOR MODEL {} NOW."
-        logger.info(msg.format(self.model_name))
+        logger.warning(msg.format(self.model_name))
         if verbose:
             msg = "OS: {}, Python: {}, Cython {}".format(sys.platform,
                                                          sys.version,
                                                          Cython.__version__)
-            logger.info(msg)
+            logger.warning(msg)
         if boost_lib is not None:
             # FIXME: allow boost_lib, eigen_lib to be specified
             raise NotImplementedError
@@ -370,7 +370,8 @@ class StanModel:
             logger.warning("Something went wrong while unpickling "
                             "the StanModel. Consider recompiling.")
         # once the module is in memory, we no longer need the file on disk
-        shutil.rmtree(lib_dir, ignore_errors=True)
+        if remove_compiled_lib_dir:
+            shutil.rmtree(lib_dir, ignore_errors=True)
 
     def optimizing(self, data=None, seed=None,
                    init='random', sample_file=None, algorithm=None,

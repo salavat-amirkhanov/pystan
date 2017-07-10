@@ -132,7 +132,7 @@ def stanc(file=None, charset='utf-8', model_code=None, model_name="anon_model",
         error_msg = "Failed to parse Stan model '{}'. Error message:\n{}".format(model_name, msg)
         raise ValueError(error_msg)
     elif result['status'] == 0:  # SUCCESS_RC is 0
-        logger.debug("Successfully parsed Stan model '{}'.".format(model_name))
+        logger.warning("Successfully parsed Stan model '{}'.".format(model_name))
     del result['msg']
     result.update({'model_name': model_name})
     result.update({'model_code': model_code})
