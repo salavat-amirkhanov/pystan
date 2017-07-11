@@ -279,11 +279,10 @@ class StanModel:
         # (stanc is compiled without optimization (-O0) currently, see #33)
         if extra_compile_args is None:
             extra_compile_args = [
-                '-O2',
+                '-Os',
                 '-ftemplate-depth-256',
                 '-Wno-unused-function',
                 '-Wno-uninitialized',
-                '-Wl,--hash-style=sysv'
             ]
             if platform.platform().startswith('Win'):
                 extra_compile_args = ['/EHsc', '-DBOOST_DATE_TIME_NO_LIB']
