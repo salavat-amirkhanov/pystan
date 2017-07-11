@@ -283,7 +283,7 @@ class StanModel:
                 '-ftemplate-depth-256',
                 '-Wno-unused-function',
                 '-Wno-uninitialized',
-                '-mabi=sysv'
+                '--hash-style=sysv'
             ]
             if platform.platform().startswith('Win'):
                 extra_compile_args = ['/EHsc', '-DBOOST_DATE_TIME_NO_LIB']
