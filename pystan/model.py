@@ -282,8 +282,7 @@ class StanModel:
                 '-O2',
                 '-ftemplate-depth-256',
                 '-Wno-unused-function',
-                '-Wno-uninitialized',
-                '--hash-style=sysv'
+                '-Wno-uninitialized'
             ]
             if platform.platform().startswith('Win'):
                 extra_compile_args = ['/EHsc', '-DBOOST_DATE_TIME_NO_LIB']
@@ -294,7 +293,8 @@ class StanModel:
                               sources=[pyx_file],
                               define_macros=stan_macros,
                               include_dirs=include_dirs,
-                              extra_compile_args=extra_compile_args)
+                              extra_compile_args=extra_compile_args,
+                              extra_link_args = ['-Wl,--hash-style=sysv'])
 
         cython_include_dirs = ['.', pystan_dir]
         build_extension = _get_build_extension()
